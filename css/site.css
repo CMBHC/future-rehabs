@@ -152,6 +152,10 @@ a {
     overflow: hidden;
 }
 
+.card:focus{
+    outline: none;
+}
+
 .break{
     flex-basis: 100%;
     height: 0;
