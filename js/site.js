@@ -11,7 +11,7 @@ function chooseLanguage(language) {
         language = 'Greek'
     }
 
-    let file = './assets/interface' + language + '.csv'
+    let file = 'assets/interface' + language + '.csv'
     d3.csv(file).then(function (data) {
         let headers = Object.keys( data[0] ) // then taking the first row object and getting an array of the keys
         for (const header in headers) {
@@ -54,7 +54,7 @@ function queryCSV(text_id,option) {
         default:
             file_id = 'tgftf';
     }
-    let file = './assets/' + file_id + option + '.csv'
+    let file = 'assets/' + file_id + option + '.csv'
     d3.csv(file).then(function (data) {
         let flag = true;
         let inner_flag;
