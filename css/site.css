@@ -1,0 +1,192 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+p{
+    width: 100%;
+    font-size: 17px;
+}
+
+button {
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 500;
+    border: none;
+}
+
+body,html {margin: 0px;}
+
+#app {
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+}
+img{
+    height: 200px;
+}
+
+h1{
+    font-size: 50px;
+    margin-bottom: 0px;
+}
+
+h2{
+    font-size: 35px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+h3{
+    font-size: 20px;
+    width: 100%;
+    margin: 0px;
+}
+
+.head{
+    background:#111111;
+    color: white;
+    padding: 25px;
+}
+section{
+    padding: 50px;
+}
+a {
+    color: hsla(193, 100%, 43%, 1);
+}
+
+#nav {
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: black;
+    color: white;
+    position: sticky;
+    top:0;
+    left:0;
+}
+#nav a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+#nav a.router-link-exact-active {
+    color: hsla(193, 100%, 43%, 1);
+}
+
+/*#tgftf{*/
+/*    color: white;*/
+/*    background: black;*/
+/*}*/
+
+/*#example-section{*/
+/*    color: white;*/
+/*    background: black;*/
+/*}*/
+
+
+#game-header{
+    display:flex;
+    flex-wrap: wrap;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+}
+#selections{
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#generate{
+    padding: 10px;
+    margin: 25px 0px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+#Time{
+    color: #222222;
+    font-size: 15px;
+}
+
+.card-type{
+    text-transform: uppercase;
+    color: #222222;
+
+}
+
+.card-text{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+}
+
+.card-holder{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    margin: 25px;
+    height: 300px;
+    width: 200px;
+    padding: 0px 0px;
+    border: 2px solid;
+    border-radius: 15px;
+    color: white;
+    font-weight: 500;
+    overflow: hidden;
+}
+
+.break{
+    flex-basis: 100%;
+    height: 0;
+}
+
+.blank{
+    background: white;
+    flex-grow: 1;
+    color: black;
+    min-height: 50px;
+}
+
+#examples{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.example{
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.example_text{
+    margin: 50px;
+    width: 400px;
+    text-align: left
+}
+
+.prompt{
+    border-left: 2px solid #222222;
+    margin: 20px;
+    padding: 20px;
+}
