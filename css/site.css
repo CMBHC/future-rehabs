@@ -91,6 +91,13 @@ a {
 /*    background: black;*/
 /*}*/
 
+#game{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 
 #game-header{
     display:flex;
@@ -105,14 +112,26 @@ a {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    display: none;
 
 }
 
-#generate{
+#Generate0{
     padding: 10px;
     margin: 25px 0px;
-    width: 200px;
+    width: 300px;
     border-radius: 10px;
+    color: white;
+    background: #111111;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.icon{
+    margin: 20px;
 }
 
 #Time{
@@ -182,7 +201,6 @@ a {
     align-items: center;
     justify-content: center;
 }
-
 .example_text{
     margin: 50px;
     width: 400px;
@@ -191,6 +209,11 @@ a {
 
 .prompt{
     border-left: 2px solid #222222;
-    margin: 20px;
+    margin-left: 20px;
     padding: 20px;
+}
+
+hr {
+    border: 1px solid lightgray;
+    flex-grow: 1;
 }

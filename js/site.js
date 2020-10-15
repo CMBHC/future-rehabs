@@ -15,14 +15,44 @@ function chooseLanguage(language) {
     d3.csv(file).then(function (data) {
         let headers = Object.keys( data[0] ) // then taking the first row object and getting an array of the keys
         for (const header in headers) {
+            console.log(data[0][headers[header]])
             document.getElementById(headers[header]+0).innerHTML = data[0][headers[header]];
-            for (let row=0; row < data.length; row++) {
-                if ((headers[header] != "Name" && headers[header] != "Description")){
+            if ((headers[header] != "Name" && headers[header] != "Description" && headers[header] != "Generate" && headers[header] != "Creators" && headers[header] != "Attribution")){
+                for (let row=0; row < data.length; row++) {
                     document.getElementById(headers[header] + (row)).innerHTML = data[row][headers[header]];
                 }
             }
         }})
     allQueries(language)
+    populateExamples(language)
+}
+
+function populateExamples(language) {
+    if (language == 'Ελληνικά') {
+        language = 'Greek'
+    }
+
+    let file = 'assets/examples' + language + '.csv'
+    d3.csv(file).then(function (data) {
+        let headers = Object.keys(data[0]) // then taking the first row object and getting an array of the keys
+        document.getElementById('exampleName').innerHTML = data[0]['Name'];
+        document.getElementById('exampleDescription').innerHTML = data[0]['Description'];
+        document.getElementById('examples').innerHTML = null;
+        for (let game = 0; game < data.length; game++) {
+            document.getElementById('examples').innerHTML += "<div class=\"example\">\n" +
+                "            <div class=\"example_text\">\n" +
+                "                <h2>" + data[game]['Game'] + " </h2>\n" +
+                "                <h3>" + data[game]['Creator'] + "</h3>\n" +
+                "                <p class=\"prompt\">" + data[game]['Prompt']+ "</p>\n" +
+                "                <p>" + data[game]['Details'] + "</p>\n" +
+                "            </div>\n" +
+                "            <a href=\"./assets/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\" target=\"_blank\">\n" +
+                "                <img alt=data[game]['Game'] src=\"./assets/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\">\n" +
+                "            </a>\n" +
+                "        </div>" +
+                "<hr/>"
+        }
+    })
 }
 
 function queryCSV(text_id,option) {
