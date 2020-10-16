@@ -21,12 +21,6 @@ button {
 
 body,html {margin: 0px;}
 
-#app {
-    font-family: Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-}
 img{
     height: 200px;
 }
@@ -34,37 +28,66 @@ img{
 h1{
     font-family: Montserrat, sans-serif;
     font-size: 50px;
-    margin-bottom: 0px;
+    margin-bottom: 25px;
 }
 
 h2{
     font-family: Montserrat, sans-serif;
     font-size: 35px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 h3{
     font-family: Montserrat, sans-serif;
     font-size: 20px;
     width: 100%;
-    margin: 0px;
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 h4 {
     font-family: Montserrat, sans-serif;
+    margin: 0px;
 }
 
 .head{
     background:#111111;
     color: white;
-    padding: 25px;
+    padding: 50px 20px;
+    text-align: center;
 }
+
+.head h3,h1 {
+    margin: 0px;
+}
+
+.head h3{
+    margin-top: 10px;
+    font-weight: normal;
+}
+
 section{
+    width: 75%;
     padding: 50px;
 }
 a {
-    color: hsla(193, 100%, 43%, 1);
+    color: black;
+    text-decoration: underline;
+}
+
+#app {
+    font-family: Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar {
+    width: 100vw;
 }
 
 #nav {
@@ -84,19 +107,47 @@ a {
     text-decoration: none;
     padding: 20px;
 }
-#nav a.router-link-exact-active {
-    color: hsla(193, 100%, 43%, 1);
+#nav .current {
+    color: darkgray;
 }
 
-/*#tgftf{*/
-/*    color: white;*/
-/*    background: black;*/
-/*}*/
+#tgftf{
+    width: 90%;
+    text-align: center;
+}
 
 /*#example-section{*/
 /*    color: white;*/
 /*    background: black;*/
 /*}*/
+
+select {
+    width: 100%;
+    max-width: 500px;
+    /*height: 30px;*/
+    padding: 10px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    margin: 15px 0px 40px 0px;
+    color: #222222
+}
+
+#language_select{
+    width: 300px;
+}
+
+#game-options{
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 75%;
+}
+
+.option {
+    text-align: left;
+    margin: 0px 25px;
+}
 
 #game{
     display:flex;
@@ -113,19 +164,14 @@ a {
     align-items: center;
     justify-content: center;
 }
-#selections{
-    display: flex;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    display: none;
 
+.remove{
+    display: none;
 }
 
 #Generate0{
     padding: 10px;
-    margin: 25px 0px;
+    margin-bottom: 25px;
     width: 300px;
     border-radius: 10px;
     color: white;
@@ -233,6 +279,18 @@ hr {
     flex-grow: 1;
 }
 
+#preamble{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#preamble div{
+    max-width: 500px;
+}
+#preamble h3{
+    text-align: center;
+}
+
 
 .form-section{
     display: flex;
@@ -260,6 +318,7 @@ hr {
     align-items: center;
     justify-content: flex-start;
 }
+
 .form-section h3{
     flex-grow: 1;
     margin: 25px 0px 0px 0px;
@@ -328,7 +387,7 @@ hr {
 }
 
 .inputfile:focus + label,
-.inputfile + label:hover {
+.file + label:hover {
     background: #222222;
 }
 

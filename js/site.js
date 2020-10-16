@@ -11,11 +11,21 @@ function chooseLanguage(language) {
         language = 'Greek'
     }
 
+    let selector = document.getElementById("selections")
+    console.log(selector.className)
+    if (selector.className != 'remove') {
+        console.log(selector.className)
+        if (language == 'Greek') {
+            document.getElementById('language').innerHTML = 'Επιλέξτε τη γλώσσα σας'
+        } else {
+            document.getElementById('language').innerHTML = 'Choose your Language'
+        }
+    }
+
     let file = 'assets/interface' + language + '.csv'
     d3.csv(file).then(function (data) {
         let headers = Object.keys( data[0] ) // then taking the first row object and getting an array of the keys
         for (const header in headers) {
-            console.log(data[0][headers[header]])
             document.getElementById(headers[header]+0).innerHTML = data[0][headers[header]];
             if ((headers[header] != "Name" && headers[header] != "Description" && headers[header] != "Generate" && headers[header] != "Creators" && headers[header] != "Attribution")){
                 for (let row=0; row < data.length; row++) {
