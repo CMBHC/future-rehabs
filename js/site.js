@@ -6,25 +6,9 @@ function allQueries(option){
     }
 }
 
-function chooseLanguage(language) {
-    // if (language == 'Ελληνικά'){
-    //     language = 'Greek'
-    // }
+function choosePrompt(option) {
 
-    language = 'English'
-
-    let selector = document.getElementById("selections")
-    console.log(selector.className)
-    if (selector.className != 'remove') {
-        console.log(selector.className)
-        // if (language == 'Greek') {
-        //     document.getElementById('language').innerHTML = 'Επιλέξτε τη γλώσσα σας'
-        // } else {
-            document.getElementById('language').innerHTML = 'Choose your Language'
-        // }
-    }
-
-    let file = 'assets/interface' + language + '.csv'
+    let file = `prompts/${option}/interface.csv`
     d3.csv(file).then(function (data) {
         let headers = Object.keys( data[0] ) // then taking the first row object and getting an array of the keys
         for (const header in headers) {
@@ -35,18 +19,13 @@ function chooseLanguage(language) {
                 }
             }
         }})
-    allQueries(language)
-    populateExamples(language)
+    allQueries(option)
+    populateExamples(option)
 }
 
-function populateExamples(language) {
-    language = 'English'
+function populateExamples(option) {
 
-    // if (language == 'Ελληνικά') {
-    //     language = 'Greek'
-    // }
-
-    let file = 'assets/examples' + language + '.csv'
+    let file = `prompts/${option}/examples.csv`
     d3.csv(file).then(function (data) {
         let headers = Object.keys(data[0]) // then taking the first row object and getting an array of the keys
         document.getElementById('exampleName').innerHTML = data[0]['Name'];
@@ -60,9 +39,9 @@ function populateExamples(language) {
                 "                <p class=\"prompt\">" + data[game]['Prompt']+ "</p>\n" +
                 "                <p>" + data[game]['Details'] + "</p>\n" +
                 "            </div>\n" +
-                "            <a href=\"./assets/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\" target=\"_blank\">\n" +
-                "                <img alt=data[game]['Game'] src=\"./assets/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\">\n" +
-                "            </a>\n" +
+                // "            <a href=\"./prompts/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\" target=\"_blank\">\n" +
+                // "                <img alt=data[game]['Game'] src=\"./prompts/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\">\n" +
+                // "            </a>\n" +
                 "        </div>" +
                 "<hr/>"
         }
@@ -71,37 +50,7 @@ function populateExamples(language) {
 
 function queryCSV(text_id,option) {
 
-    option = 'English'
-
-    let file_id = ''
-    if (option == 'Ελληνικά'){
-        option = 'Greek'
-    }
-
-    switch(option) {
-        case 'Classic':
-            switch(text_id){
-                case 'Future-Time':
-                    file_id = 'tgftf';
-                    break;
-                case 'Conflict':
-                    file_id = 'tgftf';
-                    break;
-                case 'Players':
-                    file_id = 'tgftf';
-                    break;
-                case 'Motivation':
-                    file_id = 'tgftf';
-                    break;
-                case 'Location':
-                    file_id = 'tgftf';
-                    break;
-            }
-            break;
-        default:
-            file_id = 'tgftf';
-    }
-    let file = 'assets/' + file_id + option + '.csv'
+    let file = `prompts/${option}/words.csv`
     d3.csv(file).then(function (data) {
         let flag = true;
         let inner_flag;
@@ -156,26 +105,7 @@ function queryCSV(text_id,option) {
                     flag = false;
                     document.getElementById(text_id).innerHTML = output;
                     if (text_id == 'Players') {
-                        switch (option) {
-                            case 'Ελληνικά':
-                                // switch (output) {
-                                //   case 'one': // 'έναν':
-                                //     document.getElementById('Players2').innerHTML = 'παίκτης';
-                                //     break;
-                                //   default:
-                                document.getElementById('Players2').innerHTML = 'παίκτες';
-                                // break;
-                                break
-                            case 'English':
-                                // switch (output) {
-                                //   case 'one':
-                                //     document.getElementById('Players2').innerHTML = 'player';
-                                //     break;
-                                //   default:
-                                document.getElementById('Players2').innerHTML = 'players';
-                            // break;
-                        }
-                        break;
+                        document.getElementById('Players2').innerHTML = 'players';
                     }
                 }
             }

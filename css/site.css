@@ -54,12 +54,18 @@ h4 {
 .head{
     background:#111111;
     color: white;
-    padding: 50px 20px;
-    text-align: center;
+    padding: 50px 75px;
+    text-align: left;
 }
 
-.head h3,h1 {
+.head h3, .head h1, .head p {
     margin: 0px;
+}
+
+.head p {
+    margin: 0px;
+    color: gainsboro;
+    font-size: 90%;
 }
 
 .head h3{
@@ -132,7 +138,7 @@ select {
     color: #222222
 }
 
-#language_select{
+#prompt_select{
     width: 300px;
 }
 
