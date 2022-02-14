@@ -7,19 +7,21 @@ function allQueries(option){
 }
 
 function chooseLanguage(language) {
-    if (language == 'Ελληνικά'){
-        language = 'Greek'
-    }
+    // if (language == 'Ελληνικά'){
+    //     language = 'Greek'
+    // }
+
+    language = 'English'
 
     let selector = document.getElementById("selections")
     console.log(selector.className)
     if (selector.className != 'remove') {
         console.log(selector.className)
-        if (language == 'Greek') {
-            document.getElementById('language').innerHTML = 'Επιλέξτε τη γλώσσα σας'
-        } else {
+        // if (language == 'Greek') {
+        //     document.getElementById('language').innerHTML = 'Επιλέξτε τη γλώσσα σας'
+        // } else {
             document.getElementById('language').innerHTML = 'Choose your Language'
-        }
+        // }
     }
 
     let file = 'assets/interface' + language + '.csv'
@@ -38,9 +40,11 @@ function chooseLanguage(language) {
 }
 
 function populateExamples(language) {
-    if (language == 'Ελληνικά') {
-        language = 'Greek'
-    }
+    language = 'English'
+
+    // if (language == 'Ελληνικά') {
+    //     language = 'Greek'
+    // }
 
     let file = 'assets/examples' + language + '.csv'
     d3.csv(file).then(function (data) {
@@ -66,6 +70,9 @@ function populateExamples(language) {
 }
 
 function queryCSV(text_id,option) {
+
+    option = 'English'
+
     let file_id = ''
     if (option == 'Ελληνικά'){
         option = 'Greek'
