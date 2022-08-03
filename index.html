@@ -5,106 +5,548 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/site.css">
     <title>Rehabilitation Futures - USC Creative Media and Behavioral Health Center</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script type="text/javascript" src="js/site.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 </head>
 
 
 
 <body>
-<div id="app">
-<!--<div id="nav">-->
-<!--    <a href="./index.html">Home</a>-->
-<!--</div>-->
-<div class="head bar">
-    <h1 id="Name0"></h1>
-    <p id="Description0"></p>
-</div>
 <section id="tgftf">
     <div id="game">
-        <div id="game-options">
-            <div id="selections">
-                <div id="prompt_select">
-                    <h4 id="prompt">Choose a Prompt</h4>
-                    <div class="break"></div>
-                    <select name="prompts" id="prompts">
-                    </select>
-                </div>
-            </div>
-            <button id="Generate0" class="option"></button>
-        </div>
         <div class="card-holder">
             <button class="card" style="background: hsla(80, 100%, 30%, 1); border-color: hsla(99, 39%, 20%, 1);">
                 <h3 id="Future0" class ='card-type' style="color: hsla(99, 39%, 20%, 1);" ></h3>
-                <div class="card-text">
-                    <p id="Future1"></p>
-                    <div class="blank" style="background: hsla(86, 48%, 75%, 1);"><p id='Future'>&nbsp;</p></div>
-                    <p id="Future2"></p>
-                    <div class="blank" style="background: hsla(86, 48%, 75%, 1);"><p id='Time'>&nbsp;</p></div>
-                </div>
+                <p id="Future1"></p>
+                <div class="blank" style="background: hsla(86, 48%, 75%, 1);"><p id='Future'>&nbsp;</p></div>
+                <p id="Future2"></p>
+                <div class="blank" style="background: hsla(86, 48%, 75%, 1);"><p id='Time'>&nbsp;</p></div>
             </button>
             <button class="card" style="background: hsla(338, 85%, 43%, 1); border-color: hsla(355, 87%, 20%, 1);" >
                 <h3 id="Conflict0" class ='card-type' style="color: hsla(355, 87%, 20%, 1);" ></h3>
-                <div class="card-text">
-                    <p id="Conflict1"></p>
-                    <div class="blank" style="background: hsla(352, 83%, 84%, 1);"><p id='Conflict'>&nbsp;</p></div>
-                    <p id="Conflict2"></p>
-                    <p >&nbsp;</p>
-                </div>
+                <p id="Conflict1"></p>
+                <div class="blank" style="background: hsla(352, 83%, 84%, 1);"><p id='Conflict'>&nbsp;</p></div>
+                <p id="Conflict2"></p>
+                <p >&nbsp;</p>
             </button>
             <button class="card" style="background: hsla(297, 27%, 46%, 1); border-color: hsla(296, 29%, 20%, 1);" >
                 <h3 id="Players0" class ='card-type' style="color: hsla(296, 29%, 20%, 1);" ></h3>
-                <div class="card-text">
-                    <p id="Players1"></p>
-                    <div class="blank" style="background: hsla(294, 29%, 80%, 1);"><p id='Players'>&nbsp;</p></div>
-                    <p id="Players2"></p>
-                    <p >&nbsp;</p>
-                </div>
-            </button>
-            <button class="card" style="background: hsla(193, 100%, 38%, 1); border-color: hsla(194, 100%, 20%, 1);" >
-                <h3 id="Motivation0" class ='card-type' style="color: hsla(194, 100%, 20%, 1);" ></h3>
-                <div class="card-text">
-                    <p id="Motivation1"></p>
-                    <div class="blank" style="background: hsla(193, 75%, 73%, 1);"><p id='Motivation'>&nbsp;</p></div>
-                    <p id="Motivation2"></p>
-                    <p >&nbsp;</p>
-                </div>
-            </button>
-            <button class="card" style="background: hsla(35, 100%, 45%, 1); border-color: hsla(35, 98%, 20%, 1);" >
-                <h3 id="Location0" class ='card-type' style="color: hsla(35, 98%, 20%, 1);" ></h3>
-                <div class="card-text">
-                    <p id="Location1"></p>
-                    <div class="blank" style="background: hsla(36, 100%, 76%, 1);"><p id='Location'>&nbsp;</p></div>
-                    <p id="Location2"></p>
-                    <p >&nbsp;</p>
-                </div>
+                <p id="Players1"></p>
+                <div class="blank" style="background: hsla(294, 29%, 80%, 1);"><p id='Players'>&nbsp;</p></div>
+                <p id="Players2"></p>
+                <p >&nbsp;</p>
             </button>
         </div>
+    </div>
+
+    <div id="bottom-bar">
+        <div id="prompt_select">
+            <select name="prompts" id="prompts">
+            </select>
+        </div>
         <p id='Prompt'></p>
-        <br/>
-        <hr/>
-        <br/>
-        <p id="Creators0" class="'left"></p>
-        <p id="Attribution0" class="'left"></a></p>
+        <div id="button-div">
+            <button id="copy" class="corner-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
+            <button id="randomize" class="corner-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>    
+            </button>
+        </div>
     </div>
+
 </section>
-<div class="head bar">
-    <h1 id="exampleName"></h1>
-    <p id ="exampleDescription"></p>
-</div>
-<section id="example-section">
-    <div id="examples">
-    </div>
-</section>
-</div>
+
 </body>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+#bottom-bar {
+    position: fixed; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#bottom-bar > #button-div {
+    display: flex;
+}
+
+#Prompt {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.corner-button {
+    padding: 10px;
+    background: whitesmoke;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+.corner-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.corner-button:hover {
+    background: white;
+}
+
+.corner-button:active {
+    background: rgb(237, 255, 242);
+}
+
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+p {
+    width: 100%;
+    font-size: 14px;
+    margin: 0;
+}
+
+button {
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    font-weight: 500;
+    border: none;
+}
+
+img{
+    height: 200px;
+}
+
+h1{
+    font-family: Montserrat, sans-serif;
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+
+h2{
+    font-family: Montserrat, sans-serif;
+    font-size: 27px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+h3{
+    font-family: Montserrat, sans-serif;
+    font-size: 17px;
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+h4 {
+    font-family: Montserrat, sans-serif;
+    margin: 0px;
+}
+
+.head{
+    background:#111111;
+    color: white;
+    padding: 50px 75px;
+    text-align: left;
+}
+
+.head h3, .head h1, .head p {
+    margin: 0px;
+}
+
+.head p {
+    margin: 0px;
+    color: gainsboro;
+    font-size: 90%;
+}
+
+.head h3{
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+
+a {
+    color: black;
+    text-decoration: underline;
+}
+
+#app {
+    font-family: Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar {
+    width: 100vw;
+}
+
+#nav {
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: black;
+    color: white;
+    position: sticky;
+    top:0;
+    left:0;
+}
+#nav a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+#nav .current {
+    color: darkgray;
+}
+
+#tgftf{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*#example-section{*/
+/*    color: white;*/
+/*    background: black;*/
+/*}*/
+
+select {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    color: #222222
+}
+
+
+#prompt_select{
+    padding: 10px;
+}
+
+#game-options{
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 75%;
+}
+
+.option {
+    text-align: left;
+    margin: 0px 25px;
+}
+
+#game{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#game-header{
+    display:flex;
+    flex-wrap: wrap;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove{
+    display: none;
+}
+
+#Generate0{
+    padding: 10px 40px;
+    margin-bottom: 25px;
+    /* width: 300px; */
+    border-radius: 10px;
+    color: white;
+    background: #111111;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+}
+
+#Generate0:hover{
+    background: #333333
+}
+
+#Generate0:focus{
+    outline: none;
+}
+
+.icon{
+    /* margin: 20px 20px 20px 0px; */
+    width: 20px;
+    height: 20px;
+}
+
+#Time{
+    color: #222222;
+}
+
+.card-type{
+    text-transform: uppercase;
+    color: #222222;
+
+}
+
+.card-text{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+}
+
+.card-holder{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    margin: 10px;
+    aspect-ratio: 2 / 3;
+    width: 25%;
+    max-width: 200px;
+    padding: 0px 0px;
+    border: 2px solid;
+    border-radius: 15px;
+    color: white;
+    font-weight: 500;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card:focus{
+    outline: none;
+}
+
+.break{
+    flex-basis: 100%;
+    height: 0;
+}
+
+.blank{
+    background: white;
+    flex-grow: 1;
+    color: black;
+    padding: 10px;
+}
+
+#examples{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.example{
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap-reverse;
+    align-items: center;
+    justify-content: center;
+}
+.example_text{
+    margin: 50px;
+    width: 400px;
+    text-align: left
+}
+
+.prompt{
+    border-left: 2px solid #222222;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+hr {
+    border: 1px solid lightgray;
+    flex-grow: 1;
+}
+
+#preamble{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#preamble div{
+    max-width: 500px;
+}
+#preamble h3{
+    text-align: center;
+}
+
+
+.form-section{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.form-section i{
+    font-family: Montserrat, sans-serif;
+    flex-grow: 1;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.form-section h1{
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+#agree {
+    margin: 20px 0px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.form-section h3{
+    flex-grow: 1;
+    margin: 25px 0px 0px 0px;
+}
+
+.form-section h4{
+    flex-grow: 1;
+    margin: 25px 0px 10px 0px;
+}
+
+.form-section input[type="text"]{
+    width: 100%;
+    max-width: 500px;
+    height: 25px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+}
+
+.form-section textarea{
+    font-family: Roboto, sans-serif;
+    width: 100%;
+    max-width: 500px;
+    height: 150px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+}
+
+.form-section textarea:focus{
+    outline: none;
+}
+
+.form-section input[type='checkbox']{
+    margin-right: 20px;
+}
+
+.form-section input:focus{
+   outline: none;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    padding: 10px;
+    /*margin: 25px 0px;*/
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    color: white;
+    background: #111111;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+}
+
+.inputfile:focus + label,
+.file + label:hover {
+    background: #222222;
+}
+
+#SubmitGame{
+     /*padding: 10px;*/
+     /*margin: 25px 0px;*/
+     width: 300px;
+     border-radius: 10px;
+     color: white;
+     background: #111111;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    transition: .5s;
+ }
+
+#SubmitGame:hover{
+    background: #222222;
+}
+
+</style>
 
 <script type="module">
 
 
+     // NOTE: This file is not modularized to remain compatible with SquareSpace
+    
     // Generate Prompt Options
     const selectElement = document.getElementById('prompts');
     import options from './prompts/index.js'
@@ -126,11 +568,188 @@
     
     choosePrompt(prompt);
 
-    const generate = document.getElementById('Generate0')
-    console.log(generate)
-    generate.onclick = () => {
+    const randomize = document.getElementById('randomize')
+    randomize.onclick = () => {
         allQueries(prompt)
     }
+
+    const copy = document.getElementById('copy')
+    copy.onclick = () => {
+        var text = document.getElementById('Prompt').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+        });
+    }
+
+
+    function allQueries(option){
+        let all = ['Future-Time','Conflict','Players','Motivation','Location']
+        for (const ind in all) {
+            queryCSV(all[ind],option)
+        }
+    }
+    
+    function choosePrompt(option) {
+    
+        let file = `prompts/${option}/interface.csv`
+        d3.csv(file).then(function (data) {
+            let headers = Object.keys( data[0] ) // then taking the first row object and getting an array of the keys
+            for (const header in headers) {
+                const card = document.getElementById(headers[header]+0)
+                if (card) {
+                    card.innerHTML = data[0][headers[header]];
+                    if ((headers[header] != "Name" && headers[header] != "Description" && headers[header] != "Generate" && headers[header] != "Creators" && headers[header] != "Attribution")){
+                        for (let row=0; row < data.length; row++) {
+                            document.getElementById(headers[header] + (row)).innerHTML = data[row][headers[header]];
+                        }
+                    }
+                }
+            }})
+        allQueries(option)
+        // populateExamples(option)
+    }
+    
+    function populateExamples(option) {
+    
+        let file = `prompts/${option}/examples.csv`
+        d3.csv(file).then(function (data) {
+            let headers = Object.keys(data[0]) // then taking the first row object and getting an array of the keys
+            document.getElementById('exampleName').innerHTML = data[0]['Name'];
+            document.getElementById('exampleDescription').innerHTML = data[0]['Description'];
+            document.getElementById('examples').innerHTML = null;
+            for (let game = 0; game < data.length; game++) {
+                document.getElementById('examples').innerHTML += "<div class=\"example\">\n" +
+                    "            <div class=\"example_text\">\n" +
+                    "                <h2>" + data[game]['Game'] + " </h2>\n" +
+                    "                <h3>" + data[game]['Creator'] + "</h3>\n" +
+                    "                <p class=\"prompt\">" + data[game]['Prompt']+ "</p>\n" +
+                    "                <p>" + data[game]['Details'] + "</p>\n" +
+                    "            </div>\n" +
+                    // "            <a href=\"./prompts/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\" target=\"_blank\">\n" +
+                    // "                <img alt=data[game]['Game'] src=\"./prompts/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\">\n" +
+                    // "            </a>\n" +
+                    "        </div>" +
+                    "<hr/>"
+            }
+        })
+    }
+    
+    function queryCSV(text_id,option) {
+    
+        let file = `prompts/${option}/words.csv`
+        d3.csv(file).then(function (data) {
+            let flag = true;
+            let inner_flag;
+            let row;
+            let str = text_id.split('-');
+            let output;
+            let freq;
+    
+    
+            if (str.length > 1) {
+                for (const col in str) {
+                    inner_flag = true;
+                    const el = document.getElementById(str[col])
+                    if (el) {
+                        while (inner_flag) {
+                            row = Math.floor(Math.random() * data.length);
+                            output = data[row][str[col]];
+                            if (output != '') {
+                                inner_flag = false;
+                                if (str[col] == 'Time' && option == 'English'){
+                                    output += ' from now'
+                                }
+
+                                document.getElementById(str[col]).innerHTML = output;
+                            }
+                        }
+                    }
+                }
+            } else {
+
+                const el = document.getElementById(text_id)
+                if (el) {
+    
+                // Create bag of words (to account for frequency)
+                let bag = [];
+                let data_;
+                let word;
+                let components;
+                for (const r in data) {
+                    data_ = data[r][str[0]]
+                    if (data_ != undefined && data_ != []) {
+                        if (data_.split(' (').length == 2) {
+                            components = data_.split(' (')
+                            word = components[0];
+                            freq = components[1].split(')')[0]
+                            for (let i = 0; i < freq; i++) {
+                                bag.push(word)
+                            }
+                        } else{
+                            bag.push(data_)
+                        }
+                    }
+                }
+    
+                while (flag) {
+                    row = Math.floor(Math.random() * bag.length);
+                    output = bag[row]
+                    if (output != '') {
+                        flag = false;
+                        el.innerHTML = output;
+                        if (text_id == 'Players') {
+                            document.getElementById('Players2').innerHTML = 'players';
+                        }
+                    }
+                }
+            }
+            }
+            updatePrompt();
+        })
+    }
+    
+    function updatePrompt(){
+        let all = ['Future','Conflict','Players','Motivation','Location']
+        let text = [];
+        for (let ind in all){
+            if (ind != undefined){
+
+                const current = document.getElementById(all[ind])
+                const next = document.getElementById(all[ind] + 1)
+                const nextNext = document.getElementById(all[ind] + 2)
+
+                if (ind != 4){
+                    const next = document.getElementById(all[ind] + 1)
+                        if (next){
+                        if (ind == 0) {
+                            text.push(next.innerHTML)
+                        } else{
+                            text.push(next.innerHTML.toLowerCase())
+                        }
+                    }
+                }
+
+                if (current){
+
+                    if (ind != 4) {
+                        text.push('<strong>' + current.innerHTML + '</strong>')
+                    } else{
+                        text.push('<strong>' + current.innerHTML + '</strong>' + '.')
+                    }
+                }
+    
+                if (nextNext && ind != 3) {
+                    text.push(nextNext.innerHTML)
+                }
+    
+                if (all[ind] == 'Future'){
+                    text.push('<strong>' + document.getElementById('Time').innerHTML + '</strong>' + ",")
+                }
+                let prompt = text.join(' ')
+                document.getElementById('Prompt').innerHTML = prompt
+            }}}
 
 </script>
 
