@@ -15,27 +15,6 @@
 <section id="tgftf">
     <div id="game">
         <div class="card-holder">
-            <button class="card" style="background: hsla(80, 100%, 30%, 1); border-color: hsla(99, 39%, 20%, 1);">
-                <h3 id="Future0" class ='card-type' style="color: hsla(99, 39%, 20%, 1);" ></h3>
-                <p id="Future1"></p>
-                <div class="blank" style="background: hsla(86, 48%, 75%, 1);"><p id='Future'>&nbsp;</p></div>
-                <p id="Future2"></p>
-                <p >&nbsp;</p>
-            </button>
-            <button class="card" style="background: hsla(338, 85%, 43%, 1); border-color: hsla(355, 87%, 20%, 1);" >
-                <h3 id="Conflict0" class ='card-type' style="color: hsla(355, 87%, 20%, 1);" ></h3>
-                <p id="Conflict1"></p>
-                <div class="blank" style="background: hsla(352, 83%, 84%, 1);"><p id='Conflict'>&nbsp;</p></div>
-                <p id="Conflict2"></p>
-                <p >&nbsp;</p>
-            </button>
-            <button class="card" style="background: hsla(297, 27%, 46%, 1); border-color: hsla(296, 29%, 20%, 1);" >
-                <h3 id="Players0" class ='card-type' style="color: hsla(296, 29%, 20%, 1);" ></h3>
-                <p id="Players1"></p>
-                <div class="blank" style="background: hsla(294, 29%, 80%, 1);"><p id='Players'>&nbsp;</p></div>
-                <p id="Players2"></p>
-                <p >&nbsp;</p>
-            </button>
         </div>
     </div>
 
@@ -65,14 +44,9 @@
         box-sizing: border-box;
     }
 
-/* body, html {
-    margin: 0px;
-    padding: 0px;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+body, html {
     font-family:Arial, Helvetica, sans-serif;
-} */
+}
 
 
 #bottom-bar {
@@ -84,7 +58,7 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    background-color: white;
+    background-color: rgba(255,255,255, 0.7);
     border-radius: 10px;
 }
 
@@ -94,8 +68,9 @@
 
 #Prompt {
     flex-grow: 1;
-    text-align: center;
+    text-align: left;
     padding: 10px;
+    line-height: 130%;
 }
 
 .corner-button {
@@ -327,6 +302,10 @@ select {
 }
 
 .card-type{
+    position: absolute;
+    transform: translate(-50%, calc(20px - 50%));
+    top: 0;
+    left: 50%;
     text-transform: uppercase;
     color: #222222;
 
@@ -346,19 +325,28 @@ select {
     justify-content: center;
 }
 
+.pretext {
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -175%);
+    top: 0;
+    left: 50%;
+}
+
 .card {
+    position: relative;
     margin: 10px !important;
-    aspect-ratio: 2 / 3;
-    width: 25%;
+    aspect-ratio: 7 / 10;
+    height: 250px;
     max-width: 200px;
     padding: 0px 0px;
     border: 2px solid;
     border-radius: 15px;
-    color: white;
     font-weight: 500;
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .card:focus{
@@ -370,7 +358,8 @@ select {
     height: 0;
 }
 
-.blank{
+.blank {
+    position: relative;
     background: white;
     flex-grow: 1;
     color: black;
@@ -542,31 +531,53 @@ hr {
 
 <script type="module">
 
-    const isRemote = true
-
      // NOTE: This file is not modularized to remain compatible with SquareSpace
-    
-    // Generate Prompt Options
-    const selectElement = document.getElementById('prompts');
-    const options = ['default', 'custom']
-    options.forEach((str, i) => {
+
+
+     // Get all Files + Prompt Options
+     const prompts = {}
+        const selectElement = document.getElementById('prompts');
+    const options = ['asteroid', 'alien', 'illness']
+    for (let i in options) {
+    const str = options[i]
         const option = document.createElement('option')
         option.innerHTML = str[0].toUpperCase() + str.slice(1)
         option.value = str
         if (i === 0) option.selected = true
         selectElement.insertAdjacentElement('beforeend', option)
-    })
+
+        const key = '1EhJMH_r551OUYFcyDp4Bdp3ndPSVOqNDwyvjY50dXlQ'
+        const interface_sheet_name = `${str[0].toUpperCase() + str.slice(1)} Interface`
+        const words_sheet_name = `${str[0].toUpperCase() + str.slice(1)} Words`
+
+        let interfaceURI = `https://docs.google.com/spreadsheets/d/${key}/gviz/tq?tqx=out:csv&sheet=${interface_sheet_name}`
+        // let interfaceURI = `${window.location.href.replace(window.location.pathname, '')}/prompts/${str}/interface.csv`
+        // let wordsURI = `${window.location.href.replace(window.location.pathname, '')}/prompts/${str}/words.csv`
+        let wordsURI = `https://docs.google.com/spreadsheets/d/${key}/gviz/tq?tqx=out:csv&sheet=${words_sheet_name}`
+
+        prompts[str] = {
+            interface: await d3.csv(interfaceURI),
+            words: await d3.csv(wordsURI)
+        }
+    }
+
+
+    console.log('prompts', prompts)
+
+    let cardHeaders = []
 
     // Select Prompt
     let prompt = document.getElementById('prompts').value;
 
     selectElement.addEventListener('change', (event) => {
         prompt = event.target.value
-        choosePrompt(prompt);
+        generateCards(prompt);
+        allQueries(prompt);
     });
     
-    choosePrompt(prompt);
-    
+    generateCards(prompt);
+    allQueries(prompt);
+
 
     const randomize = document.getElementById('randomize')
     randomize.onclick = () => {
@@ -585,69 +596,57 @@ hr {
 
 
     function allQueries(option){
-        let all = ['Future-Time','Conflict','Players','Motivation','Location']
-        for (const ind in all) {
-            queryCSV(all[ind],option)
-        }
+        for (const ind in cardHeaders) queryCSV(cardHeaders[ind],option)
     }
-    
-    function choosePrompt(option) {
-    
-        let file = `prompts/${option}/interface.csv`
-        if (isRemote) file = 'https://raw.githubusercontent.com/CMBHC/rehab-futures/main/' + file
 
+    function generateCards(option){
+        cardHeaders = prompts[option].words.columns
 
-        d3.csv(file).then(function (data) {
-            let headers = Object.keys( data[0] ) // then taking the first row object and getting an array of the keys
-            for (const header in headers) {
-                const card = document.getElementById(headers[header]+0)
-                if (card) {
-                    card.innerHTML = data[0][headers[header]];
-                    if ((headers[header] != "Name" && headers[header] != "Description" && headers[header] != "Generate" && headers[header] != "Creators" && headers[header] != "Attribution")){
-                        for (let row=0; row < data.length; row++) {
-                            document.getElementById(headers[header] + (row)).innerHTML = data[row][headers[header]];
-                        }
-                    }
-                }
-            }}).then(() => {
-                allQueries(option)
-            })
-        // populateExamples(option)
-    }
-    
-    function populateExamples(option) {
-    
-        let file = `prompts/${option}/examples.csv`
-        if (isRemote) file = 'https://raw.githubusercontent.com/CMBHC/rehab-futures/main/' + file
-
-        d3.csv(file).then(function (data) {
-            let headers = Object.keys(data[0]) // then taking the first row object and getting an array of the keys
-            document.getElementById('exampleName').innerHTML = data[0]['Name'];
-            document.getElementById('exampleDescription').innerHTML = data[0]['Description'];
-            document.getElementById('examples').innerHTML = null;
-            for (let game = 0; game < data.length; game++) {
-                document.getElementById('examples').innerHTML += "<div class=\"example\">\n" +
-                    "            <div class=\"example_text\">\n" +
-                    "                <h2>" + data[game]['Game'] + " </h2>\n" +
-                    "                <h3>" + data[game]['Creator'] + "</h3>\n" +
-                    "                <p class=\"prompt\">" + data[game]['Prompt']+ "</p>\n" +
-                    "                <p>" + data[game]['Details'] + "</p>\n" +
-                    "            </div>\n" +
-                    // "            <a href=\"./prompts/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\" target=\"_blank\">\n" +
-                    // "                <img alt=data[game]['Game'] src=\"./prompts/" + data[game]['Game'].replace(/\s/g, '') + ".jpg\">\n" +
-                    // "            </a>\n" +
-                    "        </div>" +
-                    "<hr/>"
+        const holder = document.querySelector('.card-holder')
+        holder.innerHTML = ''
+        const colors = [
+            {
+                primary: `hsla(80, 100%, 30%, 1)`,
+                border: `hsla(99, 39%, 20%, 1)`,
+                secondary: `hsla(86, 48%, 75%, 1)`
+            },
+            {
+                primary: `hsla(338, 85%, 43%, 1)`,
+                border: `hsla(355, 87%, 20%, 1)`,
+                secondary: `hsla(352, 83%, 84%, 1)`
+            },
+            {
+                primary: `hsla(297, 27%, 46%, 1)`,
+                border: `hsla(296, 29%, 20%, 1)`,
+                secondary: `hsla(294, 29%, 80%, 1)`
             }
+        ]
+
+        const data = prompts[option].interface
+
+        cardHeaders.forEach((str, i) => {
+            data.forEach(a => {
+                console.log(option, a)
+            })
+
+        const template = `<button class="card" style="background:${colors[i].primary}; border-color: ${colors[i].border};">
+                <h3 class ='card-type' style="color: ${colors[i].border};" >${data[0][str]}</h3>
+                <div class="blank" style="background: ${colors[i].secondary};">
+                    <p class="pretext">&nbsp;${data[1][str]}&nbsp;</p>
+                    <p id='${str}'>&nbsp;</p>
+                </div>
+            </button>`
+
+            holder.insertAdjacentHTML('beforeend', template)
         })
+
+
     }
     
     function queryCSV(text_id,option) {
     
-        let file = `prompts/${option}/words.csv`
-        if (isRemote) file = 'https://raw.githubusercontent.com/CMBHC/rehab-futures/main/' + file
+        const data = prompts[option].words
 
-        d3.csv(file).then(function (data) {
             let flag = true;
             let inner_flag;
             let row;
@@ -714,50 +713,23 @@ hr {
                 }
             }
             }
-            updatePrompt();
-        })
+        updatePrompt(option);
     }
     
-    function updatePrompt(){
-        let all = ['Future','Conflict','Players','Motivation','Location']
-        let text = [];
-        for (let ind in all){
-            if (ind != undefined){
+    function updatePrompt(option){
 
-                const current = document.getElementById(all[ind])
-                const next = document.getElementById(all[ind] + 1)
-                const nextNext = document.getElementById(all[ind] + 2)
+        const prompt = prompts[option].interface[0].Prompt
+        console.log(prompt)
 
-                if (ind != 4){
-                    const next = document.getElementById(all[ind] + 1)
-                        if (next){
-                        if (ind == 0) {
-                            text.push(next.innerHTML)
-                        } else{
-                            text.push(next.innerHTML.toLowerCase())
-                        }
-                    }
-                }
+        const replaced = prompt.split('(').map(str => str.split(')')).flat().map((str) => {
+            const el = document.getElementById(str)
+            console.log(str)
+            if (el) return `<b>${el.innerText}</b>`
+            else return str
+        }).join('')
 
-                if (current){
-
-                    if (ind != 4) {
-                        text.push('<strong>' + current.innerHTML + '</strong>')
-                    } else{
-                        text.push('<strong>' + current.innerHTML + '</strong>' + '.')
-                    }
-                }
-    
-                if (nextNext && ind != 3) {
-                    text.push(nextNext.innerHTML)
-                }
-    
-                // if (all[ind] == 'Future'){
-                //     text.push('<strong>' + document.getElementById('Time').innerHTML + '</strong>' + ",")
-                // }
-                let prompt = text.join(' ')
-                document.getElementById('Prompt').innerHTML = prompt
-            }}}
+        document.getElementById('Prompt').innerHTML = replaced
+    }
 
 </script>
 
